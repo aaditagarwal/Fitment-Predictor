@@ -30,11 +30,12 @@ def scoring(demands, weights):
     scores['Fitment Score'] = scores.iloc[1:,:].sum(axis=1)
 
     scores['Fitment Segment'] = 'No Segment'
-    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment_Score']<60,other='Best Bet')
-    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment_Score']<70,other='Stretched Fit Fit')
-    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment_Score']<85,other='Best Fit')
+    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<60,other='Best Bet')
+    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<70,other='Stretched Fit Fit')
+    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<85,other='Best Fit')
 
     scores = ranking(scores,demands)
+    scores.reset_index(inplace=True)
 
     return scores
 
@@ -42,5 +43,6 @@ def scores(demands, weights):
     score_df = scoring(demands, weights)
     scores = []
     for i in list(range(score_df.shape[0])):
-        scores.append((score_df.iloc[i,0], score_df.iloc[i,9], score_df.iloc[i,10]))
-    return scores
+        scores.append((score_df.loc[i,'Employee_ID'], score_df.loc[i,'Fitment Segment'], score_df.loc[i,'Rank']))
+        # scores.append((score_df.iloc[i,0], score_df.iloc[i,9], score_df.iloc[i,10]))
+    return scores, score_df

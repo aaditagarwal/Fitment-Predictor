@@ -12,7 +12,7 @@ class Input_Page(GridLayout):
         super().__init__(**kwargs)
         self.ey_root = ey_root
         self.cols = 2
-        self.input_keys = ['Service Line','Sub-Service Line','Business Unit',
+        self.input_keys = ['Service Line','Sub-Service Line','SMU',
                         'Location','Rank','Experience','Technical Skill',
                         'Functional Skill','Process Skill']
         self.input_holder = {}
@@ -22,7 +22,7 @@ class Input_Page(GridLayout):
 
         for key in self.input_keys:
             self.input_holder[key] = TextInput(text="", multiline=False)
-            if key in ['Service Line', 'Sub-Service Line', 'Business Unit']:
+            if key in ['Service Line', 'Sub-Service Line', 'SMU']:
                 self.add_widget(Label(text=key+" (Integer between 1-4)"+" ->"))
             elif key == 'Rank':
                 self.add_widget(Label(text=key+" (Integer between 1-5)"+" ->"))
@@ -51,13 +51,13 @@ class Input_Page(GridLayout):
         demand = {}
         demand['Location'] = self.input_holder['Location'].text
         for key in self.input_keys:
-            if key in ['Experience' , 'Rank' , 'Service Line' , 'Sub-Service Line' , 'Business Unit']:
+            if key in ['Experience' , 'Rank' , 'Service Line' , 'Sub-Service Line' , 'SMU']:
                 try:
                     demand[key] = int(self.input_holder[key].text)
                 except ValueError:
                     Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
                     return None
-            elif key in ['Service Line', 'Sub-Service Line', 'Business Unit']:
+            elif key in ['Service Line', 'Sub-Service Line', 'SMU']:
                 if (demand[key]<1) or (demand[key]>4) :
                     Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
                     return None

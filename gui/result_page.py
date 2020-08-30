@@ -31,21 +31,16 @@ class Result_Page(GridLayout):
     def update_pipeline(self, demands, weights):
         self.demands = demands
         self.weights = weights
-        employees_with_fitment = scores(demands, weights)
+        employees_with_fitment, score_df = scores(demands, weights)
+        # score_df.to_csv("outputs/Current_Output.csv")
         self.update_results(employees_with_fitment)
         
         #From Employee data call Get_Employee_Data
 
     def update_results(self, employees_with_fitment):
-        # employees_with_fitment = [
-        #     ("Employee1", "90%"),
-        #     ("Employee2", "75%"),
-        #     ("Employee3", "20%"),
-        #     ("Employee4", "0%")
-        # ]
         for dp in employees_with_fitment:
             for t in dp:
-                self.add_widget(Label(text=t))
+                self.add_widget(Label(text=str(t)))
         
         self.add_widget(self.reset_button)
         self.add_widget(self.exit_button)

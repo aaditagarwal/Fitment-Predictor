@@ -53,14 +53,29 @@ def get_employee_data(employee_id,scores):
     data['Technical Skills'] = person.technical_skills
     data['Functional Skills'] = person.functional_skills
     data['Process Skill'] = person.process_skills
-    data['Fitment Score'] = scores.loc[employee_id,'Score']
+    data['Fitment Score'] = scores.loc[employee_id,'Fitment Score']
     data['Fitment Rank'] = scores.loc[employee_id,'Rank']
-    if data['Fitment Score'] >= 85:
-        data['Fitment Segment'] = 'Best Fit'
-    elif (data['Fitment Score']>=70) and (data['Fitment Score']<85):
-        data['Fitment Segment'] = 'Stretched Fit'
-    elif (data['Fitment Score']>=60) and (data['Fitment Score']<70):
-        data['Fitment Segment'] = 'Best Bet'
-    else:
-        data['Fitment Segment'] = 'No Segment'
+    data['Fitment Segment'] = scores.loc[employee_id, 'Fitment Segment']
     return data
+
+    # person = employee(employee_id)
+    # data = {}
+    # data['ID'] = person.id
+    # data['Experience'] = person.experience
+    # data['Rank'] = person.rank
+    # data['Location'] = person.location
+    # data['Bench_Aging'] = person.bench_aging
+    # data['Technical Skills'] = person.technical_skills
+    # data['Functional Skills'] = person.functional_skills
+    # data['Process Skill'] = person.process_skills
+    # data['Fitment Score'] = scores.loc[employee_id,'Score']
+    # data['Fitment Rank'] = scores.loc[employee_id,'Rank']
+    # if data['Fitment Score'] >= 85:
+    #     data['Fitment Segment'] = 'Best Fit'
+    # elif (data['Fitment Score']>=70) and (data['Fitment Score']<85):
+    #     data['Fitment Segment'] = 'Stretched Fit'
+    # elif (data['Fitment Score']>=60) and (data['Fitment Score']<70):
+    #     data['Fitment Segment'] = 'Best Bet'
+    # else:
+    #     data['Fitment Segment'] = 'No Segment'
+    # return data
