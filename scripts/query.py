@@ -5,8 +5,8 @@ from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 geolocator = Nominatim(user_agent="AI_capacity_management")
 
-from employee_data import get_data
-from skills import match_skill
+from .employee_data import get_data
+from .skills import match_skill
 
 def experience(demand_exp, employee_ID, weights_exp):
     employee_experience = []

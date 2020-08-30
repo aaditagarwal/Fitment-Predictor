@@ -32,27 +32,27 @@ class employee(employee_id):
     def get_data(self,employee_id):
         person = employee(employee_id)
         data = {}
-        data['ID'] = self.id
-        data['Experience'] = self.experience
-        data['Rank'] = self.rank
-        data['Location'] = self.location
-        data['Bench_Aging'] = self.bench_aging
-        data['Technical Skills'] = self.technical_skills
-        data['Functional Skills'] = self.functional_skills
-        data['Process Skill'] = self.process_skills
+        data['ID'] = person.id
+        data['Experience'] = person.experience
+        data['Rank'] = person.rank
+        data['Location'] = person.location
+        data['Bench_Aging'] = person.bench_aging
+        data['Technical Skills'] = person.technical_skills
+        data['Functional Skills'] = person.functional_skills
+        data['Process Skill'] = person.process_skills
         return data
 
     def get_employee_data(self,employee_id,scores):
         person = employee(employee_id)
         data = {}
-        data['ID'] = self.id
-        data['Experience'] = self.experience
-        data['Rank'] = self.rank
-        data['Location'] = self.location
-        data['Bench_Aging'] = self.bench_aging
-        data['Technical Skills'] = self.technical_skills
-        data['Functional Skills'] = self.functional_skills
-        data['Process Skill'] = self.process_skills
+        data['ID'] = person.id
+        data['Experience'] = person.experience
+        data['Rank'] = person.rank
+        data['Location'] = person.location
+        data['Bench_Aging'] = person.bench_aging
+        data['Technical Skills'] = person.technical_skills
+        data['Functional Skills'] = person.functional_skills
+        data['Process Skill'] = person.process_skills
         data['Fitment Score'] = scores.loc[employee_id,'Score']
         data['Fitment Rank'] = scores.loc[employee_id,'Rank']
         if data['Fitment Score'] >= 85:
