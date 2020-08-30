@@ -22,16 +22,16 @@ class Input_Page(GridLayout):
 
         for key in self.input_keys:
             self.input_holder[key] = TextInput(text="", multiline=False)
-            if key == 'Service Line' or 'Sub-Service Line' or 'Business Unit':
-                self.add_widget(Label(text=key+"(Integer between 1-4)"+"->"))
+            if key in ['Service Line', 'Sub-Service Line', 'Business Unit']:
+                self.add_widget(Label(text=key+" (Integer between 1-4)"+" ->"))
             elif key == 'Rank':
-                self.add_widget(Label(text=key+"(Integer between 1-5)"+"->"))
+                self.add_widget(Label(text=key+" (Integer between 1-5)"+" ->"))
             elif key == 'Experience':
-                self.add_widget(Label(text=key+"(Integer)"+"->"))
+                self.add_widget(Label(text=key+" (Integer)"+" ->"))
             elif 'Skill' in key:
-                self.add_widget(Label(text=key+"(Seperate Skills by ',')"+"->"))
+                self.add_widget(Label(text=key+" (Seperate Skills by ',')"+" ->"))
             elif key == 'Location':
-                self.add_widget(Label(text=key+"(City, Country)"+"->"))
+                self.add_widget(Label(text=key+" (City, Country)"+" ->"))
             self.add_widget(self.input_holder[key])
 
         self.submit_input_button = Button(text="Submit")
