@@ -28,8 +28,6 @@ class EY_Hack(App):
         screen.add_widget(self.weightage_page_)
         self.screen_manager.add_widget(screen)
 
-        # Score function call 
-
         self.result_page_ = Result_Page(ey_root)
         screen = Screen(name="Result_Page")
         screen.add_widget(self.result_page_)

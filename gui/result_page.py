@@ -3,12 +3,12 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
-from scripts.scoring import scoring
+from scripts.scoring import scores
 
 class Result_Page(GridLayout):
     def __init__(self, ey_root, **kwargs):
         super().__init__(**kwargs)
-        self.cols = 2
+        self.cols = 3
         self.ey_root = ey_root
         
         # Pipeline from previous pages
@@ -16,7 +16,8 @@ class Result_Page(GridLayout):
         self.weights = None
 
         self.add_widget(Label(text="Employee"))
-        self.add_widget(Label(text="Fitment Percentage"))
+        self.add_widget(Label(text="Fitment Segment"))
+        self.add_widget(Label(text="Fitment Rank"))
         
         self.reset_button = Button(text="Restart")
         self.reset_button.bind(on_press=self.restart_app)
@@ -30,19 +31,19 @@ class Result_Page(GridLayout):
     def update_pipeline(self, demands, weights):
         self.demands = demands
         self.weights = weights
-        employees_with_fitment_percentages = scoring(demands, weights)
-        self.update_results(employees_with_fitment_percentages)
+        employees_with_fitment = scores(demands, weights)
+        self.update_results(employees_with_fitment)
         
         #From Employee data call Get_Employee_Data
 
-    def update_results(self, employees_with_fitment_percentages):
-        # employees_with_fitment_percentages = [
+    def update_results(self, employees_with_fitment):
+        # employees_with_fitment = [
         #     ("Employee1", "90%"),
         #     ("Employee2", "75%"),
         #     ("Employee3", "20%"),
         #     ("Employee4", "0%")
         # ]
-        for dp in employees_with_fitment_percentages:
+        for dp in employees_with_fitment:
             for t in dp:
                 self.add_widget(Label(text=t))
         

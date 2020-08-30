@@ -22,7 +22,16 @@ class Input_Page(GridLayout):
 
         for key in self.input_keys:
             self.input_holder[key] = TextInput(text="", multiline=False)
-            self.add_widget(Label(text=key+" ->"))
+            if key == 'Service Line' or 'Sub-Service Line' or 'Business Unit':
+                self.add_widget(Label(text=key+"(Integer between 1-4)"+"->"))
+            elif key == 'Rank':
+                self.add_widget(Label(text=key+"(Integer between 1-5)"+"->"))
+            elif key == 'Experience':
+                self.add_widget(Label(text=key+"(Integer)"+"->"))
+            elif 'Skill' in key:
+                self.add_widget(Label(text=key+"(Seperate Skills by ',')"+"->"))
+            elif key == 'Location':
+                self.add_widget(Label(text=key+"(City, Country)"+"->"))
             self.add_widget(self.input_holder[key])
 
         self.submit_input_button = Button(text="Submit")
@@ -48,8 +57,20 @@ class Input_Page(GridLayout):
                 except ValueError:
                     Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
                     return None
+            elif key in ['Service Line', 'Sub-Service Line', 'Business Unit']:
+                if (demand[key]<1) or (demand[key]>4) :
+                    Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
+                    return None
+            elif key == 'Rank':
+                if (demand[key]<1) or (demand[key]>5) :
+                    Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
+                    return None
             elif 'Skill' in key:
-                demand[key] = self.input_holder[key].text.split(',')
+                try:
+                    demand[key] = self.input_holder[key].text.split(',')
+                except ValueError:
+                    Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
+                    return None
         return demand
     
     def submit_demand(self, instance):
