@@ -29,7 +29,7 @@ class employee(employee_id):
         self.functional_skills = get_skills(self.id,['Unit 4','Unit 5','Unit 6'])
         self.process_skills = get_skills(self.id,['Unit 7'])
 
-    def get_employee_id(self,employee_id):
+    def get_data(self,employee_id):
         person = employee(employee_id)
         data = {}
         data['ID'] = self.id
@@ -40,4 +40,27 @@ class employee(employee_id):
         data['Technical Skills'] = self.technical_skills
         data['Functional Skills'] = self.functional_skills
         data['Process Skill'] = self.process_skills
+        return data
+
+    def get_employee_data(self,employee_id,scores):
+        person = employee(employee_id)
+        data = {}
+        data['ID'] = self.id
+        data['Experience'] = self.experience
+        data['Rank'] = self.rank
+        data['Location'] = self.location
+        data['Bench_Aging'] = self.bench_aging
+        data['Technical Skills'] = self.technical_skills
+        data['Functional Skills'] = self.functional_skills
+        data['Process Skill'] = self.process_skills
+        data['Fitment Score'] = scores.loc[employee_id,'Score']
+        data['Fitment Rank'] = scores.loc[employee_id,'Rank']
+        if data['Fitment Score'] >= 85:
+            data['Fitment Segment'] = 'Best Fit'
+        elif (data['Fitment Score']>=70) and (data['Fitment Score']<85):
+            data['Fitment Segment'] = 'Stretched Fit'
+        elif (data['Fitment Score']>=60) and (data['Fitment Score']<70):
+            data['Fitment Segment'] = 'Best Bet'
+        else
+            data['Fitment Segment'] = 'No Segment'
         return data

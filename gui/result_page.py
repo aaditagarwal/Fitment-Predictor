@@ -3,6 +3,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
+from scripts.scoring import scoring
 
 class Result_Page(GridLayout):
     def __init__(self, ey_root, **kwargs):
@@ -29,17 +30,18 @@ class Result_Page(GridLayout):
     def update_pipeline(self, demands, weights):
         self.demands = demands
         self.weights = weights
-        # Call function here
-        # employees_with_fitment_percentages = run_pipeline(demands, weights)
-        self.update_results()
+        employees_with_fitment_percentages = scoring(demands, weights)
+        self.update_results(employees_with_fitment_percentages)
+        
+        #From Employee data call Get_Employee_Data
 
-    def update_results(self):
-        employees_with_fitment_percentages = [
-            ("Employee1", "90%"),
-            ("Employee2", "75%"),
-            ("Employee3", "20%"),
-            ("Employee4", "0%")
-        ]
+    def update_results(self, employees_with_fitment_percentages):
+        # employees_with_fitment_percentages = [
+        #     ("Employee1", "90%"),
+        #     ("Employee2", "75%"),
+        #     ("Employee3", "20%"),
+        #     ("Employee4", "0%")
+        # ]
         for dp in employees_with_fitment_percentages:
             for t in dp:
                 self.add_widget(Label(text=t))
