@@ -8,6 +8,7 @@ from .query import bench_aging
 from .query import technical_skill
 from .query import functional_skill
 from .query import process_skill
+from .ranking import ranking
 
 employee_ID = pd.read_excel('data.xlsx',header=0,sheet_name=1)
 employee_ID = employee_ID['Name/ID']
@@ -26,16 +27,14 @@ def scoring(demands, weights):
                                    columns=['Employee_ID', 'Location', 'Rank', 'Experience', 'Bench Aging', 
                                     'Technical Skill','Functional Skill', 'Process Skill'], index=employee_ID.tolist())
 
-    scores['Fitment_Score'] = scores.iloc[1:,:].sum(axis=1)
-
-    scores.sort_values('Fitment_Score', inplace=True, ascending=False, ignore_index = True)
-    scores['Fitment Rank'] = scores.index.tolist()
-    scores['Fitment Rank'] += 1
+    scores['Fitment Score'] = scores.iloc[1:,:].sum(axis=1)
 
     scores['Fitment Segment'] = 'No Segment'
     scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment_Score']<60,other='Best Bet')
     scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment_Score']<70,other='Stretched Fit Fit')
     scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment_Score']<85,other='Best Fit')
+
+    scores = ranking(scores,demands)
 
     return scores
 
@@ -43,5 +42,5 @@ def scores(demands, weights):
     score_df = scoring(demands, weights)
     scores = []
     for i in list(range(score_df.shape[0])):
-        scores.append((score_df.iloc[i,0], score_df.iloc[i,10], score_df.iloc[i,9]))
+        scores.append((score_df.iloc[i,0], score_df.iloc[i,9], score_df.iloc[i,10]))
     return scores
