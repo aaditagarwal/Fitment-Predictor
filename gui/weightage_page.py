@@ -4,7 +4,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 
-from alert import Alert
+from .alert import Alert
 
 class Weightage_Page(GridLayout):
     def __init__(self, ey_root, **kwargs):

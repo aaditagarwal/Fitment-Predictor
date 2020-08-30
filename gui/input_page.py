@@ -5,7 +5,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-from alert import Alert
+from .alert import Alert
 
 class Input_Page(GridLayout):
     def __init__(self, ey_root, **kwargs):
