@@ -9,10 +9,10 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-from alert import Alert
-from input_page import Input_Page
-from weightage_page import Weightage_Page
-from result_page import Result_Page
+from gui.alert import Alert
+from gui.input_page import Input_Page
+from gui.weightage_page import Weightage_Page
+from gui.result_page import Result_Page
 
 class EY_Hack(App):
     def build(self):
@@ -27,6 +27,8 @@ class EY_Hack(App):
         screen = Screen(name="Weightage_Page")
         screen.add_widget(self.weightage_page_)
         self.screen_manager.add_widget(screen)
+
+        # Score function call 
 
         self.result_page_ = Result_Page(ey_root)
         screen = Screen(name="Result_Page")

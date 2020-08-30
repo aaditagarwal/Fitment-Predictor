@@ -40,6 +40,7 @@ class Input_Page(GridLayout):
 
     def preprocess_input(self):
         demand = {}
+        demand['Location'] = self.input_holder['Location'].text
         for key in self.input_keys:
             if key in ['Experience' , 'Rank' , 'Service Line' , 'Sub-Service Line' , 'Business Unit']:
                 try:
