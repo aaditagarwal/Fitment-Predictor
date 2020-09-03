@@ -12,7 +12,7 @@ class Input_Page(GridLayout):
         super().__init__(**kwargs)
         self.ey_root = ey_root
         self.cols = 2
-        self.input_keys = ['Service Line','Sub-Service Line','SMU',
+        self.input_keys = ['Service Line','Sub Service Line','SMU',
                         'Location','Rank','Experience','Technical Skill',
                         'Functional Skill','Process Skill']
         self.input_holder = {}

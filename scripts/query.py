@@ -44,23 +44,25 @@ def bench_aging(employee_ID, weights_aging):
     return np.array(employee_aging)
 
 def location(demand_location, employee_ID, weights_location):
-    try:
-        demand_location = geolocator.geocode(demand_location)
-        demand_location = (demand_location.latitude, demand_location.longitude)
-        employee_location = []
-        for employee in employee_ID:
-            employee_data = get_data(employee)['Location']
+    demand_location = geolocator.geocode(demand_location)
+    demand_location = (demand_location.latitude, demand_location.longitude)
+    employee_location = []
+    for employee in employee_ID:
+        employee_data = get_data(employee)['Location']
+        try:
             employee_data = geolocator.geocode(employee_data)
             employee_data = (employee_data.latitude,employee_data.longitude)
             location_value = great_circle(demand_location,employee_data).km
-            if location_value == 0:
-                location_value = weights_location
-            else:
-                location_value = weights_location * (1 - location_value/1000)
-            employee_location.append(location_value)
-        return np.array(employee_location)
-    except:
-        return [0]*len(employee_ID)
+        except:
+            location_value = -1
+        if location_value == 0:
+            location_value = weights_location
+        elif location > 0:
+            location_value = weights_location * (1 - location_value/1000)
+        else:
+            location_value = 0
+        employee_location.append(location_value)
+    return np.array(employee_location)
 
 def technical_skill(demand_tech, employee_ID, weights_tech):
     employee_technical_skill = []
