@@ -19,13 +19,13 @@ A Score is calculated for each of the demand heuristic compared to the supply's 
     3. **Process Skills** of the employee.
 
 #### Word Embedding
-For the skill matching algorithm we have trained our own skill corpus using the open sourced gensim library, and it’s Word2Vec Bag-of-Words model. The learnt 100-dimensional embeddings are compared (Demand to that of Supply) using cosine similarity. Score is calculated by mutlipying the normalized cosine similarity with skill levels of the supply, and then choosing the max matched skilled.
+For the skill matching algorithm we have trained our own skill corpus using the open sourced gensim library, and it’s Word2Vec Bag-of-Words model. The learnt 100-dimensional embeddings are compared (Demand to that of Supply) using cosine similarity. Score is calculated by mutlipying the normalized cosine similarity with skill levels of the supply, and then choosing the max matched skilled. Download thefolder embedding vectors from [Word Embedding Models](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)
 
 #### Ranking
-Once the Fitment Scores and Segments are determined for each employee in the supply, the recommendation for the demand are ranked according to the hierachical structure of the oraganization, i.e., Service Line -> Sub Service Line -> SMU/Business Unit. Implying the employees in the same SMU, SSL and SL are ranked higher while the employees with same SSL and SL but different SMU are ranked lower.  
+Once the Fitment Scores and Segments are determined for each employee in the supply, the recommendation for the demand are ranked in each Segment according to the hierachical structure of the oraganization, i.e., Service Line -> Sub Service Line -> SMU/Business Unit. Implying the employees in the same SMU, SSL and SL are ranked higher while the employees with same SSL and SL but different SMU are ranked lower within each segment.  
 
 ## DataSet
-The dataset is acquired from the Hackathon page provided by the host themselves. The key sheets in the dataset are:
+The dataset acquired from the Hackathon page is extrapolated provided by the host themselves. The key sheets in the dataset are:
 1.  Demand Sheet
 2.  Supply Sheet ->
     1.  Non-Skills Supply
@@ -39,6 +39,11 @@ The dataset is acquired from the Hackathon page provided by the host themselves.
 4.  GenSim
 
 ## Instructions
+```
+git clone https://github.com/aaditagarwal/Fitment-Predictor.git
+```
+Download .zip file from [Word Embedding Models](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)\\
+Extract the folder in the root directory as "models"
 ```
 conda env create environment.yml
 conda activate ey
@@ -55,9 +60,12 @@ python ey.py
 ##### Results Page
 <img src="Screenshots/result.png" width="450">
 
+##### Employee Details Page
+<img src="Screenshots/employee_details.png" width="450">
+
 ## Demonstration of Project
 1.  [Demonstration Video](https://drive.google.com/file/d/1j0nIOo-n2fU3n3nTq8BmANfGCm3Ox2L-/view?usp=sharing)
-2.  [Presentation](https://docs.google.com/presentation/d/1AC6aa0c2zPQ6j4isF7zsarWry5S-QHXEusWNK-n33bk/edit?usp=sharing)
+2.  [Presentation](https://docs.google.com/presentation/d/1pQhxA7BH9P6wIlJ6G_aoWw2_NRWiDYd8TBhh4RUMVmA/edit?usp=sharing)
 
 ## Contributors
 1.	[Aadit Agarwal](https://github.com/aaditagarwal/)\
