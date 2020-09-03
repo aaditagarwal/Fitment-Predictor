@@ -89,6 +89,7 @@ def employee_details(employee_id, demand, scores):
     
     for key in keys:
         if key in ['Service Line', 'Sub Service Line', 'SMU']:
+<<<<<<< HEAD
             person.append([key,data[key],demand[key],None])
         else:
             person.append([key,data[key],demand[key],data[key+' Score']])
@@ -98,3 +99,19 @@ def employee_details(employee_id, demand, scores):
     information['Fitment Segment'] = data['Fitment Segment']
 
     return person, information
+=======
+            person.append([key,data[key],demand[key],' - '])
+        elif 'Skill' in keys:
+            person.append([key, 'See Above', 'See Above', data[key+' Score']])
+        else:
+            person.append([key,data[key],demand[key],data[key+' Score']])
+    
+    information['Employee ID'] = employee_id
+    information['Fitment Score'] = data['Fitment Score']
+    information['Fitment Rank'] = data['Fitment Rank']
+    information['Fitment Segment'] = data['Fitment Segment']
+    information['Supply Skill'] = data['Technical Skill'] + data['Functional Skill'] + data['Process Skill']
+    information['Demand Skill'] = demand['Technical Skill'] + demand['Functional Skill'] + demand['Process Skill']
+
+    return person, information
+>>>>>>> cda1c955c50636d2ee0e112f8919def1835df113
