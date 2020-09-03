@@ -31,7 +31,7 @@ def scoring(demands, weights):
 
     scores['Fitment Segment'] = 'No Segment'
     scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<60,other='Best Bet')
-    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<70,other='Stretched Fit Fit')
+    scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<70,other='Stretched Fit')
     scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<85,other='Best Fit')
 
     scores = ranking(scores,demands)
@@ -44,5 +44,4 @@ def scores(demands, weights):
     scores = []
     for i in list(range(score_df.shape[0])):
         scores.append((score_df.loc[i,'Rank'], score_df.loc[i,'Employee_ID'], score_df.loc[i,'Fitment Segment'], score_df.loc[i,'Fitment Score']))
-        # scores.append((score_df.iloc[i,0], score_df.iloc[i,9], score_df.iloc[i,10]))
     return scores, score_df
