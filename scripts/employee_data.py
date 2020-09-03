@@ -18,9 +18,20 @@ def get_skills(employee_id,units):
             skill_set.append((camelCase(sheet.iloc[i,5]),sheet.iloc[i,6]))
     return skill_set
 
+def location_list():
+    locations = []
+    for index,employee in supply_non_skills.iterrows():
+        locations.append(employee['City']+', '+employee['Country'])
+    unique = np.array(locations)
+    unique = np.unique(unique)
+    return unique.tolist()
+
 class employee():
     def __init__(self,employee_id):
         self.id = employee_id
+        self.SL = supply_non_skills.loc[self.id,'Service_Line']
+        self.SSL = supply_non_skills.loc[self.id, 'Sub_Service_Line']
+        self.SMU = supply_non_skills.loc[self.id, 'SMU']
         self.experience = supply_non_skills.loc[self.id, 'Experience']
         self.rank = supply_non_skills.loc[self.id, 'Rank']
         self.location = supply_non_skills.loc[self.id,'City'] + ', ' + supply_non_skills.loc[self.id,'Country']
@@ -46,36 +57,44 @@ def get_employee_data(employee_id,scores):
     person = employee(employee_id)
     data = {}
     data['ID'] = person.id
+    data['Service Line'] = person.SL
+    data['Sub Service Line'] = person.SSL
+    data['SMU'] = person.SMU
     data['Experience'] = person.experience
+    data['Experience Score'] = scores.loc[employee_id, 'Experience']
     data['Rank'] = person.rank
+    data['Rank Score'] = scores.loc[employee_id,'Rank']
     data['Location'] = person.location
+    data['Location Score'] = scores.loc[employee_id,'Location']
     data['Bench_Aging'] = person.bench_aging
-    data['Technical Skills'] = person.technical_skills
-    data['Functional Skills'] = person.functional_skills
+    data['Bench_Aging Score'] = scores.loc[employee_id,'Bench Aging']
+    data['Technical Skill'] = person.technical_skills
+    data['Technical Skill Score'] = scores.loc[employee_id, 'Technical Skill']
+    data['Functional Skill'] = person.functional_skills
+    data['Functional Skill Score'] = scores.loc[employee_id, 'Functional Skill']
     data['Process Skill'] = person.process_skills
+    data['Process Skill Score'] = scores.loc[employee_id, 'Process Skill']
     data['Fitment Score'] = scores.loc[employee_id,'Fitment Score']
     data['Fitment Rank'] = scores.loc[employee_id,'Rank']
     data['Fitment Segment'] = scores.loc[employee_id, 'Fitment Segment']
     return data
 
-    # person = employee(employee_id)
-    # data = {}
-    # data['ID'] = person.id
-    # data['Experience'] = person.experience
-    # data['Rank'] = person.rank
-    # data['Location'] = person.location
-    # data['Bench_Aging'] = person.bench_aging
-    # data['Technical Skills'] = person.technical_skills
-    # data['Functional Skills'] = person.functional_skills
-    # data['Process Skill'] = person.process_skills
-    # data['Fitment Score'] = scores.loc[employee_id,'Score']
-    # data['Fitment Rank'] = scores.loc[employee_id,'Rank']
-    # if data['Fitment Score'] >= 85:
-    #     data['Fitment Segment'] = 'Best Fit'
-    # elif (data['Fitment Score']>=70) and (data['Fitment Score']<85):
-    #     data['Fitment Segment'] = 'Stretched Fit'
-    # elif (data['Fitment Score']>=60) and (data['Fitment Score']<70):
-    #     data['Fitment Segment'] = 'Best Bet'
-    # else:
-    #     data['Fitment Segment'] = 'No Segment'
-    # return data
+def employee_details(employee_id, demand, scores):
+    person = []
+    information = {}
+    data = get_employee_data(employee_id,scores)
+    keys = ['Service Line', 'Sub Service Line', 'SMU',
+             'Location', 'Rank', 'Experience', 'Technical Skill',
+             'Functional Skill', 'Process Skill']
+    
+    for key in keys:
+        if key in ['Service Line', 'Sub Service Line', 'SMU']:
+            person.append([key,data[key],demand[key],None])
+        else:
+            person.append([key,data[key],demand[key],data[key+' Score']])
+    
+    information['Fitment Score'] = data['Fitment Score']
+    information['Fitment Rank'] = data['Fitment Rank']
+    information['Fitment Segment'] = data['Fitment Segment']
+
+    return person, information
