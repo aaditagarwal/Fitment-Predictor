@@ -31,7 +31,7 @@ def match_skill(demand, supply):
     except KeyError:
         return 0
     # Normalizing
-    similarities = (similarities + 1) / 2.
+    # similarities = (similarities + 1) / 2.
 
     score = similarities * weightage_skills
 
