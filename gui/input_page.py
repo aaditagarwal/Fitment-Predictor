@@ -10,6 +10,7 @@ from kivy.uix.slider import Slider
 
 from .alert import Alert
 from scripts.employee_data import location_list
+import scripts.skills, scripts.employee_data, scripts.query, scripts.ranking, scripts.scoring
 
 class Input_Page(GridLayout):
     def __init__(self, ey_root, **kwargs):

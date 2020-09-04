@@ -1,5 +1,6 @@
 import numpy as np
 from gensim.models import KeyedVectors
+print("Reading skills (vectors)")
 word_vectors = KeyedVectors.load("models/vectors_sg.kv", mmap='r')
 
 

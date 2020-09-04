@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from re import sub
 
+print("Reading employee data")
 supply_non_skills = pd.read_excel('data.xlsx', sheet_name=1, index_col=0, header=0)
 supply_skills = pd.read_excel('data.xlsx', sheet_name=2, header=0)
 
