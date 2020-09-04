@@ -9,12 +9,11 @@ A Kivy based application to determine the fitment of an employee from the supply
 
 #### Fitment Score Calculation
 A Score is calculated for each of the demand heuristic compared to the supply's attributes and the Fitment Score is calculated for the weightage given to the heuristic summing to 100%. The Heuristics considered for the calculation of Fitment Score are namely:
-1.  **Location** of the employee(City, Country): [The great-circle distance](https://en.wikipedia.org/wiki/Great-circle_distance) between the demand location and the employee's location.
-2.  Years of **Experience** of the employee: A Perfect score (weightage of attribute) for match, while a 10% decrease for every year short of the demand and a 1% increase for every year exceeding the demand.
-3.  Hierarchical **Rank** of the employee: A perfect score for same rank as demand, while a 10% decrease for every rank lower than the demand and a 1% increase for every rank higher than the demand.
+1.  **Location** of the employee(City, Country): [The great-circle distance](https://en.wikipedia.org/wiki/Great-circle_distance) between the demand location and the employee's location and a decrement of weight assigned per 1000km from the  demand location.   
+2.  Years of **Experience** of the employee: A Perfect score (weightage of attribute) for match, while a 10% decrease of the weight assigned for every year short of the demand and a 5% increase of the weight assigned for every year exceeding the demand.
+3.  Hierarchical **Rank** of the employee: A perfect score for same rank as demand, while a 10% decrease for every rank lower than the demand and a 5% increase for every rank higher than the demand.
 4.  **Bench Aging** of the employee: The number of weeks spent on the "Bench", i.e. number of weeks since not assigned to any project. A negative 10% decrement of assigned weight for every week spent on the bench.
-5. **Skills** of the employee: The specific type of skill requirements of the demand are compared to all the same type of skills of the employee with a word embedding algorithm and the maximum matched skill value is taken along with the weight of the heuristic to calculate the score. Types of skills considered:  
-    1. **Technical Skills** of the employee.
+5. **Skills** of the employee: The specific type of skill requirements of the demand are compared to all the same type of skills of the employee with a word embedding algorithm and the maximum matched skill value is taken along with the weight of the heuristic to calculate the score. Types of skills considered:      1. **Technical Skills** of the employee.
     2. **Functional Skills** of the employee.
     3. **Process Skills** of the employee.
 
@@ -22,8 +21,7 @@ A Score is calculated for each of the demand heuristic compared to the supply's 
 For the skill matching algorithm we have trained our own skill corpus using the open sourced gensim library, and it’s Word2Vec Bag-of-Words model. The learnt 100-dimensional embeddings are compared (Demand to that of Supply) using cosine similarity. Score is calculated by mutlipying the normalized cosine similarity with skill levels of the supply, and then choosing the max matched skilled. Download thefolder embedding vectors from [Word Embedding Models](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)
 
 #### Ranking
-Once the Fitment Scores and Segments are determined for each employee in the supply, the recommendation for the demand are ranked in each Segment according to the hierachical structure of the oraganization, i.e., Service Line -> Sub Service Line -> SMU/Business Unit. Implying the employees in the same SMU, SSL and SL are ranked higher while the employees with same SSL and SL but different SMU are ranked lower within each segment.  
-
+Once the Fitment Scores and Segments are determined for each employee in the supply, the recommendation for the demand are ranked in each Segment according to the hierachical structure of the oraganization, i.e., Service Line -> Sub Service Line -> SMU/Business Unit. Implying the employees in the same SMU, SSL and SL are ranked higher while the employees with same SSL and SL but different SMU are ranked lower within each segment.
 ## DataSet
 The dataset acquired from the Hackathon page is extrapolated provided by the host themselves. The key sheets in the dataset are:
 1.  Demand Sheet
@@ -39,11 +37,19 @@ The dataset acquired from the Hackathon page is extrapolated provided by the hos
 4.  GenSim
 
 ## Instructions
+Do make the window of the application **full-screen** for best experience
+```
+conda env create environment.yml
+conda activate ey
+python ey.py
+```
+
+To run from github repository
 ```
 git clone https://github.com/aaditagarwal/Fitment-Predictor.git
 ```
-Download .zip file from [Word Embedding Models](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)\\
-Extract the folder in the root directory as "models"
+Download the trained word embedding from [Drive Link](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)\
+Extract the files from the .zip file and store in "models" sub-directory in the root directory
 ```
 conda env create environment.yml
 conda activate ey
