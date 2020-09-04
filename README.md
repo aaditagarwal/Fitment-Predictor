@@ -52,16 +52,16 @@ python ey.py
 
 ## Screenshots
 ##### Deamnds Input Page
-<img src="Screenshots/demands.png" width="450">
+<img src="screenshots/demands.png" width="450">
 
 ##### Weights Input Page
-<img src="Screenshots/weights.png" width="450">
+<img src="screenshots/weights.png" width="450">
 
 ##### Results Page
-<img src="Screenshots/result.png" width="450">
+<img src="screenshots/result.png" width="450">
 
 ##### Employee Details Page
-<img src="Screenshots/employee_details.png" width="450">
+<img src="screenshots/employee_details.png" width="450">
 
 ## Demonstration of Project
 1.  [Demonstration Video](https://drive.google.com/file/d/1j0nIOo-n2fU3n3nTq8BmANfGCm3Ox2L-/view?usp=sharing)
