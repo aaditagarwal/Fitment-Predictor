@@ -6,6 +6,7 @@ supply = pd.read_excel('data.xlsx', header=0, sheet_name=1, index_col=0)
 def ranking(score_df,demand):
     segments = ['Best Fit', 'Stretched Fit', 'Best Bet', 'No Segment']
     data = []
+    score_df = score_df.where(score_df['Fitment Score']>0).dropna()
     for segment in segments:
         segmented = score_df.where(score_df['Fitment Segment']==segment).dropna()
         segmented_supply = supply.loc[segmented.index.tolist(),:]
