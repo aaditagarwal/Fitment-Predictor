@@ -102,18 +102,21 @@ class Input_Page(GridLayout):
     def preprocess_input(self):
         demand = {}
         demand['Location'] = self.input_holder['Location'].text
+        if demand['Location'] == "Select Location":
+            Alert(title='Invalid Inputs!', text='Select a location.')
+            return None
         for key in self.input_keys:
             if key == 'Experience':
                 try:
                     demand[key] = int(self.input_holder[key].text)
                 except ValueError:
-                    Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
+                    Alert(title='Invalid Inputs!', text='Experience input is invalid.')
                     return None
             elif 'Skill' in key:
                 try:
                     demand[key] = self.input_holder[key].text.lower().replace(" ","").split(',')
                 except ValueError:
-                    Alert(title='Invalid Inputs!', text='One or More Inputs are invalid.')
+                    Alert(title='Invalid Inputs!', text='One or more Skill inputs are invalid.')
                     return None
             elif key != 'Location':
                 demand[key] = self.input_holder[key].value

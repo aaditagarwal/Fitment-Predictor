@@ -21,7 +21,7 @@ class Result_Page(GridLayout):
         self.add_widget(Label(text="Fitment Rank"))
         self.add_widget(Label(text="Employee"))
         self.add_widget(Label(text="Fitment Segment"))
-        self.add_widget(Label(text="Fitment Percentage"))
+        self.add_widget(Label(text="Fitment Percentage(%)"))
         
         self.reset_button = Button(text="Restart")
         self.reset_button.bind(on_press=self.restart_app)
@@ -54,6 +54,8 @@ class Result_Page(GridLayout):
                     btn.bind(on_press=self.employee_show)
                     # lambda x: self.ey_root.show_employee(idx=str(t), demands=self.demands, scores=self.scores_df))
                     self.add_widget(btn)
+                elif '.' in str(t):
+                    self.add_widget(Label(text="{0:.2f}".format(t)))
                 else:
                     self.add_widget(Label(text=str(t)))
   

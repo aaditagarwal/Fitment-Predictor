@@ -42,7 +42,10 @@ class Employee_Page(GridLayout):
 
         for row in table_data:
             for value in row:
-                self.add_widget(Label(text=str(value)))
+                if "." in str(value):
+                    self.add_widget(Label(text="{0:.2f}".format(value)))
+                else:
+                    self.add_widget(Label(text=str(value)))
 
         self.btn = Button(text="Go Back")
         self.btn.bind(on_press=self.go_back)
