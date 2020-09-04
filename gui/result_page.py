@@ -45,6 +45,11 @@ class Result_Page(GridLayout):
         #From Employee data call Get_Employee_Data
 
     def update_results(self, employees_with_fitment):
+        self.add_widget(Label(text="Fitment Rank"))
+        self.add_widget(Label(text="Employee"))
+        self.add_widget(Label(text="Fitment Segment"))
+        self.add_widget(Label(text="Fitment Percentage(%)"))
+        
         for dp in employees_with_fitment:
             for t in dp:
                 if str(t)[:8] == "Employee":
