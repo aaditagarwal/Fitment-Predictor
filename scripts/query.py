@@ -26,7 +26,7 @@ def rank(demand_rank, employee_ID, weights_rank):
     employee_rank = []
     for employee in employee_ID:
         employee_data = get_data(employee)['Rank']
-        rank_value = int(employee_data[-1]) - demand_rank
+        rank_value = employee_data - demand_rank
         if rank_value == 0:
             rank_value = weights_rank
         elif rank_value < 0:
