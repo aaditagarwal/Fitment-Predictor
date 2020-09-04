@@ -19,7 +19,7 @@ A Score is calculated for each of the demand heuristic compared to the supply's 
     3. **Process Skills** of the employee.
 
 #### Word Embedding
-For the skill matching algorithm we have trained our own skill corpus using the open sourced gensim library, and itÃ¢â‚¬â„¢s Word2Vec Bag-of-Words model. The learnt 100-dimensional embeddings are compared (Demand to that of Supply) using cosine similarity. Score is calculated by mutlipying the normalized cosine similarity with skill levels of the supply, and then choosing the max matched skilled. Download thefolder embedding vectors from [Word Embedding Models](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)
+For the skill matching algorithm we have trained our own skill corpus using the open sourced gensim library, and its Word2Vec Bag-of-Words model. The learnt 100-dimensional embeddings are compared (Demand to that of Supply) using cosine similarity. Score is calculated by mutlipying the normalized cosine similarity with skill levels of the supply, and then choosing the max matched skilled. Download thefolder embedding vectors from [Word Embedding Models](https://drive.google.com/drive/folders/1vWsQAnS3z4-Ez314Y3AOGbRpof-Gx2sC?usp=sharing)
 
 #### Ranking
 Once the Fitment Scores and Segments are determined for each employee in the supply, the recommendation for the demand are ranked in each Segment according to the hierachical structure of the oraganization, i.e., Service Line -> Sub Service Line -> SMU/Business Unit. Implying the employees in the same SMU, SSL and SL are ranked higher while the employees with same SSL and SL but different SMU are ranked lower within each segment.  
