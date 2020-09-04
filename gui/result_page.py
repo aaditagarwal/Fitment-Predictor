@@ -17,11 +17,6 @@ class Result_Page(GridLayout):
         self.scores_df = None
 
         self.employees = []
-
-        self.add_widget(Label(text="Fitment Rank"))
-        self.add_widget(Label(text="Employee"))
-        self.add_widget(Label(text="Fitment Segment"))
-        self.add_widget(Label(text="Fitment Percentage(%)"))
         
         self.reset_button = Button(text="Restart")
         self.reset_button.bind(on_press=self.restart_app)

@@ -1,6 +1,6 @@
-# from kivy.config import Config
-# Config.set('graphics', 'fullscreen', '0')
-# Config.write()
+from kivy.config import Config
+Config.set('graphics', 'fullscreen', '0')
+Config.write()
 
 from kivy.app import App
 from kivy.uix.label import Label
