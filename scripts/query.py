@@ -12,13 +12,13 @@ def experience(demand_exp, employee_ID, weights_exp):
     employee_experience = []
     for employee in employee_ID:
         employee_data = get_data(employee)['Experience']
-        exp_value = demand_exp - employee_data
+        exp_value = employee_data - demand_exp
         if exp_value == 0:
             exp_value = weights_exp
         elif exp_value < 0:
-            exp_value = weights_exp * (1 - exp_value/10) # Requirement not met, affect is larger
+            exp_value = weights_exp * (1 - np.abs(exp_value)/10) # Requirement not met, affect is larger
         else:
-            exp_value = weights_exp * (1 + exp_value/100) # Exceeds requirement, affect is smaller
+            exp_value = weights_exp * (1 + exp_value/50) # Exceeds requirement, affect is smaller
         employee_experience.append(exp_value)
     return np.array(employee_experience)
 
@@ -26,13 +26,13 @@ def rank(demand_rank, employee_ID, weights_rank):
     employee_rank = []
     for employee in employee_ID:
         employee_data = get_data(employee)['Rank']
-        rank_value = demand_rank - int(employee_data[-1])
+        rank_value = int(employee_data[-1]) - demand_rank
         if rank_value == 0:
             rank_value = weights_rank
         elif rank_value < 0:
-            rank_value = weights_rank * (1 - rank_value/10)
+            rank_value = weights_rank * (1 + np.abs(rank_value)/50)
         else:
-            rank_value = weights_rank * (1 + rank_value/100)
+            rank_value = weights_rank * (1 - rank_value/10)
         employee_rank.append(rank_value)
     return np.array(employee_rank)
 

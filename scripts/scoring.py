@@ -22,12 +22,13 @@ def scoring(demands, weights):
     func_skill_scores = functional_skill(demands['Functional Skill'], employee_ID, weights['Functional Skill'])
     process_skill_scores = process_skill(demands['Process Skill'], employee_ID, weights['Process Skill'])
 
-    scores = pd.DataFrame(list(zip(employee_ID.tolist(), location_scores, rank_scores, exp_scores, aging_scores,
+    scores = pd.DataFrame(list(zip(location_scores, rank_scores, exp_scores, aging_scores,
                                    tech_skill_scores, func_skill_scores, process_skill_scores)),
-                                   columns=['Employee_ID', 'Location', 'Rank', 'Experience', 'Bench Aging', 
+                                   columns=['Location', 'Rank', 'Experience', 'Bench Aging', 
                                     'Technical Skill','Functional Skill', 'Process Skill'], index=employee_ID.tolist())
+    scores.index.name = "Employee_ID"
 
-    scores['Fitment Score'] = scores.iloc[:,1:].sum(axis=1)
+    scores['Fitment Score'] = scores.sum(axis=1)
 
     scores['Fitment Segment'] = 'No Segment'
     scores['Fitment Segment'] = scores['Fitment Segment'].where(scores['Fitment Score']<60,other='Best Bet')
@@ -43,5 +44,5 @@ def scores(demands, weights):
     score_df = scoring(demands, weights)
     scores = []
     for i in list(range(score_df.shape[0])):
-        scores.append((score_df.loc[i,'Rank'], score_df.loc[i,'Employee_ID'], score_df.loc[i,'Fitment Segment'], score_df.loc[i,'Fitment Score']))
+        scores.append((score_df.loc[i,'Fitment Rank'], score_df.loc[i,'Employee_ID'], score_df.loc[i,'Fitment Segment'], score_df.loc[i,'Fitment Score']))
     return scores, score_df

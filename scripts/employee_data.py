@@ -67,8 +67,8 @@ def get_employee_data(employee_id,scores):
     data['Rank Score'] = scores.loc[employee_id,'Rank']
     data['Location'] = person.location
     data['Location Score'] = scores.loc[employee_id,'Location']
-    data['Bench_Aging'] = person.bench_aging
-    data['Bench_Aging Score'] = scores.loc[employee_id,'Bench Aging']
+    data['Bench Aging'] = person.bench_aging
+    data['Bench Aging Score'] = scores.loc[employee_id,'Bench Aging']
     data['Technical Skill'] = person.technical_skills
     data['Technical Skill Score'] = scores.loc[employee_id, 'Technical Skill']
     data['Functional Skill'] = person.functional_skills
@@ -76,7 +76,7 @@ def get_employee_data(employee_id,scores):
     data['Process Skill'] = person.process_skills
     data['Process Skill Score'] = scores.loc[employee_id, 'Process Skill']
     data['Fitment Score'] = scores.loc[employee_id,'Fitment Score']
-    data['Fitment Rank'] = scores.loc[employee_id,'Rank']
+    data['Fitment Rank'] = scores.loc[employee_id,'Fitment Rank']
     data['Fitment Segment'] = scores.loc[employee_id, 'Fitment Segment']
     return data
 
@@ -85,7 +85,7 @@ def employee_details(employee_id, demand, scores):
     information = {}
     data = get_employee_data(employee_id,scores)
     keys = ['Service Line', 'Sub Service Line', 'SMU',
-             'Location', 'Rank', 'Experience', 'Technical Skill',
+             'Location', 'Rank', 'Experience', 'Bench Aging', 'Technical Skill',
              'Functional Skill', 'Process Skill']
     
     for key in keys:
@@ -93,6 +93,8 @@ def employee_details(employee_id, demand, scores):
             person.append([key,data[key],demand[key],' - '])
         elif 'Skill' in key:
             person.append([key, '<See Above>', '<See Above>', data[key+' Score']])
+        elif 'Bench' in key:
+            person.append([key, data[key], ' - ', data[key+' Score']])
         else:
             person.append([key,data[key],demand[key],data[key+' Score']])
     

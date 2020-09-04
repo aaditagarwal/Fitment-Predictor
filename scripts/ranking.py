@@ -8,7 +8,6 @@ def ranking(score_df,demand):
     data = []
     for segment in segments:
         segmented = score_df.where(score_df['Fitment Segment']==segment).dropna()
-        segmented.set_index("Employee_ID",inplace=True)
         segmented_supply = supply.loc[segmented.index.tolist(),:]
         SL = segmented_supply.where(segmented_supply.Service_Line==demand['Service Line']).dropna()
         SSL = SL.where(SL.Sub_Service_Line==demand['Sub Service Line']).dropna()
@@ -24,6 +23,6 @@ def ranking(score_df,demand):
         data.append(df)
 
     recommendation = pd.concat([data[0], data[1], data[2], data[3]])
-    recommendation['Rank'] = list(range(1,recommendation.shape[0]+1))
+    recommendation['Fitment Rank'] = list(range(1,recommendation.shape[0]+1))
 
     return recommendation
