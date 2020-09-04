@@ -57,7 +57,7 @@ def location(demand_location, employee_ID, weights_location):
             location_value = -1
         if location_value == 0:
             location_value = weights_location
-        elif location > 0:
+        elif location_value > 0:
             location_value = weights_location * (1 - location_value/1000)
         else:
             location_value = 0
