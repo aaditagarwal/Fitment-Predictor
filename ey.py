@@ -13,6 +13,7 @@ from gui.alert import Alert
 from gui.input_page import Input_Page
 from gui.weightage_page import Weightage_Page
 from gui.result_page import Result_Page
+from gui.employee_page import Employee_Page
 
 class EY_Hack(App):
     def build(self):
@@ -33,6 +34,11 @@ class EY_Hack(App):
         screen.add_widget(self.result_page_)
         self.screen_manager.add_widget(screen)
 
+        self.employee_page_ = Employee_Page(ey_root)
+        screen = Screen(name="Employee_Page")
+        screen.add_widget(self.employee_page_)
+        self.screen_manager.add_widget(screen)
+
         return self.screen_manager
 
     def reset_app(self, *_):
@@ -49,6 +55,12 @@ class EY_Hack(App):
         print("GOING TO RESULT")
         self.screen_manager.transition.direction = 'left'
         self.screen_manager.current = "Result_Page"
+    
+    def show_employee(self, idx, demands, scores):
+        print("DISPLAYING EMPLOYEE")
+        self.employee_page_.update_results_employee(idx, demands, scores)
+        self.screen_manager.transition.direction = 'up'
+        self.screen_manager.current = "Employee_Page"
 
 if __name__ == "__main__":
     ey_root = EY_Hack()
