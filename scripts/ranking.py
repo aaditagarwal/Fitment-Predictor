@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-print("Reading ranking")
+print("Reading supply")
 supply = pd.read_excel('data.xlsx', header=0, sheet_name=1, index_col=0)
 
 def ranking(score_df,demand):

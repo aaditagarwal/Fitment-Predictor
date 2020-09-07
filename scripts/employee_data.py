@@ -103,10 +103,10 @@ def employee_details(employee_id, demand, scores):
     information['Fitment Score'] = data['Fitment Score']
     information['Fitment Rank'] = data['Fitment Rank']
     information['Fitment Segment'] = data['Fitment Segment']
-    information['Top 3 Supply Skils'] = data['Technical Skill'] + data['Functional Skill'] + data['Process Skill']
-    information['Top 3 Supply Skils'].sort(key=operator.itemgetter(1), reverse=True)
-    information['Top 3 Supply Skils'] = [i[0].lower().replace(" ","") for i in information['Top 3 Supply Skils']][:3]
-    information['Top 3 Demand Skils'] = demand['Technical Skill'] + demand['Functional Skill'] + demand['Process Skill']
-    information['Top 3 Demand Skils'] = information['Top 3 Demand Skils'][:3]
+    information['Random 3 Supply Skils'] = data['Technical Skill'] + data['Functional Skill'] + data['Process Skill']
+    information['Random 3 Supply Skils'].sort(key=operator.itemgetter(1), reverse=True)
+    information['Random 3 Supply Skils'] = [i[0].lower().replace(" ","") for i in information['Random 3 Supply Skils']][:3]
+    information['Random 3 Demand Skils'] = demand['Technical Skill'] + demand['Functional Skill'] + demand['Process Skill']
+    information['Random 3 Demand Skils'] = information['Random 3 Demand Skils'][:3]
 
     return person, information

@@ -25,20 +25,20 @@ class Employee_Page(GridLayout):
             else:
                 self.add_widget(Label(text=str(v)))    
 
-        self.add_widget(Label(text="---"))
-        self.add_widget(Label(text="---"))
-        self.add_widget(Label(text="---"))
-        self.add_widget(Label(text="---"))
+        self.add_widget(Label(text="-----"))
+        self.add_widget(Label(text="-----"))
+        self.add_widget(Label(text="-----"))
+        self.add_widget(Label(text="-----"))
 
         self.add_widget(Label(text="Attribute"))
         self.add_widget(Label(text="Supply"))
         self.add_widget(Label(text="Demand"))
         self.add_widget(Label(text="Score"))
         
-        self.add_widget(Label(text="---"))
-        self.add_widget(Label(text="---"))
-        self.add_widget(Label(text="---"))
-        self.add_widget(Label(text="---"))
+        self.add_widget(Label(text="-----"))
+        self.add_widget(Label(text="-----"))
+        self.add_widget(Label(text="-----"))
+        self.add_widget(Label(text="-----"))
 
         for row in table_data:
             for value in row:

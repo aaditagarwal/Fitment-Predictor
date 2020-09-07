@@ -18,7 +18,7 @@ class Weightage_Page(GridLayout):
         self.weight_keys = ['Location','Rank','Experience',
                             'Bench Aging','Technical Skill',
                             'Functional Skill','Process Skill']
-        self.add_widget(Label(text="Key"))
+        self.add_widget(Label(text="Heuristics"))
         self.total_weight_label = Label(text="Weights")
         self.add_widget(self.total_weight_label)
         self.slider_values = {}

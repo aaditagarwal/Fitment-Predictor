@@ -43,7 +43,7 @@ class Result_Page(GridLayout):
         self.add_widget(Label(text="Fitment Rank"))
         self.add_widget(Label(text="Employee"))
         self.add_widget(Label(text="Fitment Segment"))
-        self.add_widget(Label(text="Fitment Percentage(%)"))
+        self.add_widget(Label(text="Fitment Score"))
         
         for dp in employees_with_fitment:
             for t in dp:

@@ -24,7 +24,7 @@ class Input_Page(GridLayout):
 
         self.slider_values = {}
         
-        self.add_widget(Label(text="Key"))
+        self.add_widget(Label(text="Demand Heuristics"))
         self.add_widget(Label(text="Inputs"))
 
         for key in self.input_keys:
